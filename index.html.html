@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1b111d">
+<meta name="description" content="刘娜，每一句想说的话，都慢慢汇成了你。">
+<title>刘娜，写给你的偏爱</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231b111d'/%3E%3Cpath d='M16 25 5 14C-1 5 12 1 16 9 20 1 33 5 27 14Z' fill='%23efabc2'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#1b111d;color:#f9e6e8}
+*{box-sizing:border-box}body{margin:0;overflow:hidden}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:2px solid #fff;outline-offset:5px}
+.page{position:relative;height:100vh;height:100svh;min-height:480px;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#412233 0%,#271626 40%,#170f1c 85%)}
+.page:after{content:"";position:absolute;inset:12px;border:1px solid #e9b6c414;border-radius:3px;pointer-events:none}
+canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:manipulation}
+header{position:absolute;top:max(34px,env(safe-area-inset-top));left:0;right:0;text-align:center;pointer-events:none;transition:opacity 1s}
+.eyebrow{font-size:12px;letter-spacing:.27em;color:#bc92a3;margin:0 0 12px}.dedication{font-family:"Songti SC",SimSun,serif;font-size:18px;letter-spacing:.16em;margin:0;font-weight:400}
+.intro{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:24px;text-align:center;transition:opacity .8s,visibility .8s;background:radial-gradient(ellipse at center,#271626bb,transparent 68%);z-index:3}
+.intro h1{font-family:"Songti SC",SimSun,serif;font-size:clamp(30px,8vw,48px);font-weight:400;letter-spacing:.12em;margin:0 0 20px;line-height:1.6}
+.intro p{font-size:16px;line-height:2;color:#d0aebc;margin:0 0 36px}.start{border:1px solid #e9b0c46b;background:#f3c5d2;color:#3c2031;border-radius:99px;min-height:54px;padding:0 34px;box-shadow:0 8px 40px #f4a8bd19;transition:transform .2s}.start:active{transform:scale(.96)}
+.intro .small{font-size:12px;color:#ac8295;margin:18px 0 0;letter-spacing:.08em}.started .intro{opacity:0;visibility:hidden;pointer-events:none}
+.center{position:absolute;top:43%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;width:80%;opacity:0;transition:opacity 1.4s}
+.center.visible{opacity:1}.center .overline{color:#d4a6b9;font-size:12px;letter-spacing:.24em;margin:0 0 12px}.center h2{font-family:"Songti SC",SimSun,serif;font-weight:400;font-size:clamp(23px,6.8vw,40px);letter-spacing:.08em;margin:0}.center .under{font-size:12px;color:#cea3b6;letter-spacing:.13em;margin:15px 0 0}
+.bottom{position:absolute;bottom:max(28px,calc(env(safe-area-inset-bottom) + 16px));left:24px;right:24px;text-align:center;opacity:0;pointer-events:none;transition:opacity 1s;z-index:2}.started .bottom{opacity:1;pointer-events:auto}
+.message{display:block;border:0;background:none;color:#f9e6e8;margin:0 auto;padding:12px 0;min-height:52px;font-family:"Songti SC",SimSun,serif;font-size:clamp(18px,5vw,23px);line-height:1.6;letter-spacing:.04em;max-width:100%}.caption{margin:3px 0 20px;font-size:12px;color:#ac8196;letter-spacing:.12em}
+.controls{display:flex;gap:12px;justify-content:center}.control{background:#efcada09;border:1px solid #c997ae35;color:#cca7b8;min-height:44px;padding:0 20px;font-size:14px;border-radius:99px}.control:hover{background:#efcada15}
+.footnote{position:absolute;bottom:38px;left:0;right:0;text-align:center;font-size:12px;color:#916d82;letter-spacing:.15em;transition:opacity .6s}.started .footnote{opacity:0;pointer-events:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-height:650px){header{top:25px}.eyebrow{margin-bottom:8px}.bottom{bottom:max(20px,env(safe-area-inset-bottom))}.caption{margin-bottom:10px}.center .under{margin-top:10px}.center .overline{margin-bottom:8px}}
+@media(min-width:800px){.bottom{bottom:40px}.caption{margin-bottom:24px}header{top:42px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="page" id="page">
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <header><p class="eyebrow">A LITTLE LOVE, JUST FOR YOU</p><p class="dedication">写给刘娜的偏爱</p></header>
+  <section class="intro" id="intro" aria-label="打开这份心意">
+    <h1>刘娜，<br>有些话想对你说。</h1>
+    <p>把想念写成小纸条，<br>把每一张，都放进心里。</p>
+    <button class="start" id="start">点开我的心意 <span aria-hidden="true">♡</span></button>
+    <p class="small">给独一无二的你</p>
+  </section>
+  <div class="center" id="center"><p class="overline">每一句，都是你</p><h2>刘娜，我爱你</h2><p class="under">往后的四季，都想有你</p></div>
+  <section class="bottom" id="bottom" aria-label="便签和播放控制" inert>
+    <button class="message" id="message" aria-label="下一句心意">遇见你，真好</button>
+    <p class="caption">轻点这句话，再读一句心意</p>
+    <div class="controls"><button class="control" id="pause" aria-pressed="false">暂停</button><button class="control" id="replay">再来一遍</button></div>
+  </section>
+  <p class="footnote">想把平凡的日子，过成有你的日子</p>
+  <p class="sr-only" id="description">打开后，写着祝福和告白的彩色便签会聚成爱心，再散开、重新聚拢并保持心形。可以暂停动画，或点击下方文字逐句阅读。</p>
+</main>
+<script>
+'use strict';
+// 文案可在这里修改。便签会循环使用这些文字。
+const TEXTS = [
+ '好好爱自己','好好吃饭','别熬夜','天冷了多穿衣服',
+ '多喝水哦~','我想你了','顺顺利利','保持好心情',
+ '岁岁平安','万事胜意','满心是你','来日方长',
+ '温柔以待','平安喜乐','奔赴山海','心之所向',
+ '刘娜，我爱你','我一定会娶你的','嫁给我','一定要嫁给我',
+ '遇见你，真好','想陪你吃好多顿饭','你的分享，我都想听',
+ '不开心的时候，还有我','忙完也记得好好休息','想和你一起看日落',
+ '想牵着你慢慢走','平凡的日子，有你就甜','你的愿望，我想认真记住',
+ '往后的四季，都想有你','喜欢你，也想好好珍惜你','刘娜，今天也很爱你'
+];
+const COLORS=['#edb7c9','#d0c3e6','#efd8af','#bbd4d8','#eac6ba','#c9d9c5'];
+const page=document.getElementById('page'),canvas=document.getElementById('scene'),ctx=canvas.getContext('2d');
+const center=document.getElementById('center'),message=document.getElementById('message'),pauseButton=document.getElementById('pause');
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+let W=0,H=0,cx=0,cy=0,scale=0,cardW=0,cardH=0,notes=[],stars=[],started=false,paused=false;
+let elapsed=0,phaseTime=0,phase='intro',last=0,frameId=0,messageIndex=20,messageClock=0;
+function heart(t){return [16*Math.sin(t)**3,-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))];}
+function outline(count){
+ const samples=[],lengths=[0];
+ for(let i=0;i<=1800;i++){const p=heart(i*Math.PI*2/1800);samples.push(p);if(i)lengths.push(lengths[i-1]+Math.hypot(p[0]-samples[i-1][0],p[1]-samples[i-1][1]));}
+ const result=[];let j=1;
+ for(let i=0;i<count;i++){const d=(i+.5)*lengths[1800]/count;while(lengths[j]<d)j++;const k=(d-lengths[j-1])/(lengths[j]-lengths[j-1]);result.push([samples[j-1][0]+(samples[j][0]-samples[j-1][0])*k,samples[j-1][1]+(samples[j][1]-samples[j-1][1])*k]);}
+ return result;
+}
+const trace=outline(240);
+const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*t*(t*(6*t-15)+10);};
+function layout(){
+ W=page.clientWidth;H=page.clientHeight;const dpr=Math.min(window.devicePixelRatio||1,2);
+ canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+ cx=W/2;cy=H*.43;scale=Math.min((W-64)/32,(H*.48)/29,20);
+ cardW=Math.max(27,Math.min(61,W*.091));cardH=cardW*.52;
+ const outer=W<600?54:72,inner=W<600?38:54;
+ notes=[];const targets=[...outline(outer).map(p=>[p[0],p[1],1]),...outline(inner).map(p=>[p[0],p[1],.79])];
+ const columns=Math.max(5,Math.floor(W/(cardW*1.15))),rows=Math.ceil(targets.length/columns);
+ const slots=Array.from({length:columns*rows},(_,i)=>i);
+ for(let i=slots.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[slots[i],slots[j]]=[slots[j],slots[i]];}
+ targets.forEach((p,i)=>{
+   const theta=Math.random()*Math.PI*2,slot=slots[i];
+   const tx=cx+p[0]*scale*p[2],ty=cy+p[1]*scale*p[2];
+   const sx=cx+Math.cos(theta)*(W+H)*.7,sy=cy+Math.sin(theta)*(W+H)*.7;
+   notes.push({tx,ty,x:sx,y:sy,ox:sx,oy:sy,sx,sy,
+     scatterDelay:i<outer ? .3*i/Math.max(1,outer-1) : .4+.3*(i-outer)/Math.max(1,inner-1),
+     scatterTilt:0,spinDirection:i%2===0?1:-1,
+     dx:(slot%columns+.5)*W/columns,dy:110+(Math.floor(slot/columns)+.5)*(H-310)/rows,
+     color:COLORS[i%COLORS.length],text:TEXTS[i%TEXTS.length],angle:(Math.random()-.5)*.22,bend:(Math.random()-.5)*Math.min(W,500),offset:Math.random()*6.28});
+ });
+ stars=Array.from({length:48},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.3,o:Math.random()*6.28}));
+ if(started){setPhase(reduced.matches||phase==='final'?'final':'enter');}else{notes.forEach(n=>{n.x=n.tx;n.y=n.ty;});}
+ draw();
+}
+function setPhase(next){phase=next;phaseTime=0;notes.forEach(n=>{n.scatterTilt=0;if(next==='final'){n.x=n.tx;n.y=n.ty;}n.ox=n.x;n.oy=n.y;});center.classList.toggle('visible',next==='hold'||next==='final');pauseButton.hidden=reduced.matches||next==='final';}
+function nextMessage(){messageIndex=(messageIndex+1)%TEXTS.length;message.textContent=TEXTS[messageIndex];messageClock=0;}
+function update(dt){
+ elapsed+=dt;
+ if(!started||paused)return;
+ phaseTime+=dt;messageClock+=dt;
+ if(messageClock>4.5&&!reduced.matches)nextMessage();
+ const duration={enter:6.2,hold:1.8,scatter:3.4,float:4,return:3.9};
+ notes.forEach((n,i)=>{
+   if(reduced.matches){n.x=n.tx;n.y=n.ty;return;}
+   if(phase==='final'){n.x=n.tx;n.y=n.ty;return;}
+   if(phase==='hold'){
+     const pulse=1+.009*Math.sin(phaseTime*2);n.x=cx+(n.tx-cx)*pulse;n.y=cy+(n.ty-cy)*pulse;return;
+   }
+   if(phase==='float'){n.x=n.dx+Math.sin(phaseTime+n.offset)*3;n.y=n.dy+Math.cos(phaseTime+n.offset)*4;return;}
+   let p=0,tx=n.tx,ty=n.ty;
+   if(phase==='enter')p=smooth((phaseTime-i/(notes.length-1)*3.4)/2.6);
+   if(phase==='scatter'){
+     // 外层先沿轮廓依次起飞，内层随后跟上；总时长仍为 3.4 秒。
+     p=smooth((phaseTime-n.scatterDelay)/2.7);tx=n.dx;ty=n.dy;
+     // 轻轻翻摆，在起点和落点归零，避免切换阶段时角度跳变。
+     const flutter=Math.sin(p*Math.PI)**2;
+     n.scatterTilt=flutter*(n.spinDirection*.16+Math.sin(p*Math.PI*2)*.1);
+   }
+   if(phase==='return')p=smooth((phaseTime-(i%9)*.07)/3.2);
+   const arc=Math.sin(p*Math.PI)*n.bend;
+   n.x=n.ox+(tx-n.ox)*p+arc*.25;n.y=n.oy+(ty-n.oy)*p+arc;
+ });
+ if(!reduced.matches&&phaseTime>=duration[phase])setPhase({enter:'hold',hold:'scatter',scatter:'float',float:'return',return:'final'}[phase]);
+}
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+function draw(){
+ ctx.clearRect(0,0,W,H);
+ stars.forEach(s=>{ctx.globalAlpha=.18+.35*(1+Math.sin((reduced.matches?0:elapsed)*.6+s.o))/2;ctx.fillStyle='#eac4d5';ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();});
+ ctx.globalAlpha=1;
+ if(phase==='hold'||phase==='final'||!started){
+   ctx.save();ctx.strokeStyle='#cf829c';ctx.globalAlpha=started?.25:.10;ctx.lineWidth=1;
+   [1.04,.74].forEach(f=>{ctx.beginPath();trace.forEach((p,i)=>{const x=cx+p[0]*scale*f,y=cy+p[1]*scale*f;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.closePath();ctx.stroke();});ctx.restore();
+ }
+ ctx.globalAlpha=started?1:.18;
+ notes.forEach(n=>{
+   if(n.x < -cardW||n.x>W+cardW||n.y < -cardH||n.y>H+cardH)return;
+   ctx.save();ctx.translate(n.x,n.y);ctx.rotate(n.angle+n.scatterTilt);
+   ctx.fillStyle='#09040d55';roundRect(-cardW/2+1,-cardH/2+2,cardW,cardH,2);ctx.fill();
+   ctx.fillStyle=n.color;roundRect(-cardW/2,-cardH/2,cardW,cardH,2);ctx.fill();
+   ctx.fillStyle='#ffffff70';ctx.fillRect(-cardW/2+3,-cardH/2+2,cardW-6,1);
+   // 小便签是组成爱心的视觉元素；下方同步提供可阅读的大字文案。
+   const font=cardW*.155;ctx.font=`${font}px "PingFang SC","Microsoft YaHei",sans-serif`;ctx.fillStyle='#503443';ctx.textAlign='center';ctx.textBaseline='middle';
+   const chars=Array.from(n.text),limit=6;
+   if(chars.length>limit){ctx.fillText(chars.slice(0,limit).join(''),0,-font*.58);ctx.fillText(chars.slice(limit).join(''),0,font*.68);}
+   else ctx.fillText(n.text,0,1);
+   ctx.restore();
+ });
+ ctx.globalAlpha=1;
+}
+function tick(now){frameId=0;const dt=last?Math.min((now-last)/1000,.05):0;last=now;update(dt);draw();if(!document.hidden&&!paused&&!reduced.matches)frameId=requestAnimationFrame(tick);}
+function ensureLoop(){if(!frameId&&!document.hidden&&!paused){last=0;frameId=requestAnimationFrame(tick);}}
+function start(){
+ started=true;paused=false;page.classList.add('started');document.getElementById('intro').inert=true;document.getElementById('bottom').inert=false;
+ notes.forEach(n=>{n.x=n.sx;n.y=n.sy;});setPhase(reduced.matches?'final':'enter');
+ messageIndex=20;message.textContent=TEXTS[messageIndex];messageClock=0;pauseButton.textContent='暂停';pauseButton.setAttribute('aria-pressed','false');
+ pauseButton.hidden=reduced.matches;ensureLoop();message.focus({preventScroll:true});
+}
+document.getElementById('start').addEventListener('click',start);
+document.getElementById('replay').addEventListener('click',start);
+message.addEventListener('click',nextMessage);
+pauseButton.addEventListener('click',()=>{paused=!paused;pauseButton.textContent=paused?'继续':'暂停';pauseButton.setAttribute('aria-pressed',String(paused));if(paused){cancelAnimationFrame(frameId);frameId=0;}else ensureLoop();});
+canvas.addEventListener('click',e=>{if(!started)return;const rect=canvas.getBoundingClientRect(),x=e.clientX-rect.left,y=e.clientY-rect.top;for(let i=notes.length-1;i>=0;i--){const n=notes[i];if(Math.abs(x-n.x)<cardW*.65&&Math.abs(y-n.y)<cardH*.8){messageIndex=TEXTS.indexOf(n.text);message.textContent=n.text;messageClock=0;break;}}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frameId);frameId=0;last=0;}else ensureLoop();});
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{layout();if(reduced.matches&&started)update(0);draw();ensureLoop();},180);});
+function motionChanged(){pauseButton.hidden=reduced.matches;if(started){paused=false;pauseButton.textContent='暂停';pauseButton.setAttribute('aria-pressed','false');setPhase('final');update(0);draw();}ensureLoop();}
+if(reduced.addEventListener)reduced.addEventListener('change',motionChanged);else reduced.addListener(motionChanged);
+layout();ensureLoop();
+</script>
+</body>
+</html>
